@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// IntroPage: 하트 떨어지는 애니메이션 + 시작하기 버튼
+
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
 
@@ -101,7 +101,6 @@ class _IntroPageState extends State<IntroPage>
             );
           }),
 
-          // 중앙 텍스트 + 시작하기 버튼
           Center(
             child: Padding(
               padding: const EdgeInsets.all(32.0),
@@ -159,9 +158,9 @@ class _IntroPageState extends State<IntroPage>
 
 class _FallingHeart {
   final Key key;
-  final double x; // 0~1, 가로 위치 비율
+  final double x; 
   final double size;
-  double startY; // 0~1, 세로 위치 비율
+  double startY; 
   final double speed;
 
   _FallingHeart({
@@ -173,7 +172,7 @@ class _FallingHeart {
   });
 }
 
-// 회원가입/로그인 화면 + 약관 동의 포함 + 이름/D-day 저장 유지
+
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
 
@@ -182,7 +181,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  bool isLoginMode = true; // true: 로그인, false: 회원가입
+  bool isLoginMode = true; 
 
   final TextEditingController idController = TextEditingController();
   final TextEditingController pwController = TextEditingController();
@@ -193,7 +192,6 @@ class _AuthPageState extends State<AuthPage> {
   bool agreedTerms = false;
   bool agreedPrivacy = false;
 
-  // 간단히 메모리 저장하는 회원 DB (실제 앱에선 서버 연동 필요)
   final Map<String, String> _userDB = {};
 
   @override
@@ -202,7 +200,7 @@ class _AuthPageState extends State<AuthPage> {
     _loadUserDB();
   }
 
-  // 예시로 SharedPreferences에서 저장한 유저 DB 불러오기
+
   Future<void> _loadUserDB() async {
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
@@ -277,7 +275,7 @@ class _AuthPageState extends State<AuthPage> {
       context,
     ).showSnackBar(const SnackBar(content: Text('회원가입이 완료되었습니다! 로그인 해주세요.')));
 
-    _toggleMode(); // 로그인 모드로 전환
+    _toggleMode(); 
   }
 
   void _login() {
@@ -302,10 +300,9 @@ class _AuthPageState extends State<AuthPage> {
       errorMessage = null;
     });
 
-    // 로그인 성공 시 ID 저장
+
     _saveLoggedInUser(id);
 
-    // 로그인 성공, 홈 화면으로 이동
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => HomePage(loggedInId: id)),
@@ -415,8 +412,7 @@ class _AuthPageState extends State<AuthPage> {
   }
 }
 
-// HomePage: 로그인 후 사용자 이름과 사귄 날짜 불러와 보여주고 수정 가능,
-// 추천 데이트룩, 추천 데이트 코스 버튼 추가
+
 class HomePage extends StatefulWidget {
   final String loggedInId;
 
@@ -546,7 +542,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // 로그아웃 처리
+
   Future<void> _logout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('loggedInUser');
@@ -602,7 +598,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 20),
 
-              // 추천 데이트룩 버튼
+
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -624,7 +620,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 12),
 
-              // 추천 데이트 코스 버튼
+
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -652,7 +648,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// 추천 데이트룩 페이지 (간단 샘플)
+
 class DateLookPage extends StatelessWidget {
   const DateLookPage({super.key});
 
@@ -687,7 +683,7 @@ class DateLookPage extends StatelessWidget {
   }
 }
 
-// 추천 데이트 코스 페이지 (간단 샘플)
+
 class DateCoursePage extends StatelessWidget {
   const DateCoursePage({super.key});
 
